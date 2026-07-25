@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OWASP Security Lab</title>
+    <style>
+        body {
+            max-width: 900px;
+            margin: 48px auto;
+            padding: 0 24px;
+            color: #1f2937;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+        }
+
+        h1 {
+            color: #0f172a;
+        }
+
+        .notice {
+            padding: 14px 18px;
+            border-left: 4px solid #d97706;
+            background: #fffbeb;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .card {
+            padding: 20px;
+            border: 1px solid #dbe3ee;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .status {
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <h1>OWASP Top 10:2025 Security Lab</h1>
+
+    <p>
+        A local educational application comparing vulnerable and secure
+        implementations of common web application risks.
+    </p>
+
+    <div class="notice">
+        <strong>Ethical boundary:</strong>
+        this intentionally vulnerable application must only be used locally.
+    </div>
+
+    <div class="grid">
+        <section class="card">
+            <h2>A01</h2>
+            <p>Broken Access Control</p>
+            <p class="status">Experiment pending</p>
+        </section>
+
+        <section class="card">
+            <h2>A05</h2>
+            <p>Injection - Stored XSS</p>
+            <p class="status">Experiment pending</p>
+        </section>
+
+        <section class="card">
+            <h2>A07</h2>
+            <p>Authentication Failures</p>
+            <p class="status">Experiment pending</p>
+        </section>
+    </div>
+</body>
+</html>
