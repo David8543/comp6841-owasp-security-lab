@@ -33,6 +33,11 @@ def init_db():
             FOREIGN KEY (user_id) REFERENCES users (id)
         );
 
+        CREATE TABLE IF NOT EXISTS comments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            body TEXT NOT NULL
+        );
+
         INSERT OR IGNORE INTO users (id, username)
         VALUES
             (1, 'alice'),
@@ -42,6 +47,10 @@ def init_db():
         VALUES
             (1, 1, 'Alice private note', 'Alice exam preparation notes'),
             (2, 2, 'Bob private note', 'Bob confidential project idea');
+
+        INSERT OR IGNORE INTO comments (id, body)
+        VALUES
+            (1, 'Welcome to the local comments board.');
         """
     )
     database.commit()

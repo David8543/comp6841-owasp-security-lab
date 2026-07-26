@@ -4,6 +4,7 @@ from flask import Flask, render_template
 
 from . import db
 from .a01 import bp as a01_bp
+from .a05 import bp as a05_bp
 
 
 def create_app(test_config=None):
@@ -19,6 +20,7 @@ def create_app(test_config=None):
     os.makedirs(app.instance_path, exist_ok=True)
     db.init_app(app)
     app.register_blueprint(a01_bp)
+    app.register_blueprint(a05_bp)
 
     with app.app_context():
         db.init_db()

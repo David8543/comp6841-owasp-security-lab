@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ mode }} Stored XSS Board{% endblock %}
+{% block content %}
+<h1>{{ mode }} Stored XSS Board</h1>
+
+{% if vulnerable %}
+<p class="danger">
+    Stored comments are rendered with the intentionally unsafe
+    <code>|safe</code> filter.
+</p>
+{% else %}
+<p class="safe">
+    Stored comments are rendered using Jinja's default HTML auto-escaping.
+</p>
+{% endif %}
+
+<form method="post">
+    <label for="body"><strong>Comment</strong></label>
+    <textarea id="body" name="body" required></textarea>
+    <button type="submit">Store comment</button>
+</form>
+
+<h2>Stored comments</h2>
+{% for comment in comments %}
+<div class="comment">
+    {% if vulnerable %}
+        {{ comment["body"] | safe }}
+    {% else %}
+        {{ comment["body"] }}
+    {% endif %}
+</div>
+{% endfor %}
+
+<p><a href="{{ url_for('a05.overview') }}">Back to A05 experiment</a></p>
+{% endblock %}

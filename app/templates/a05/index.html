@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}A05 Stored XSS{% endblock %}
+{% block content %}
+<h1>A05: Injection - Stored XSS</h1>
+
+<p>
+    Both routes store the same comments in SQLite. The difference is how the
+    application places untrusted data into the HTML response.
+</p>
+
+<div class="notice">
+    Local test payload:
+    <code>&lt;script&gt;alert('Stored XSS executed')&lt;/script&gt;</code>
+</div>
+
+<div class="grid">
+    <section class="card">
+        <h2 class="danger">Vulnerable route</h2>
+        <p>
+            The template marks stored input as safe HTML, so the browser
+            interprets the script.
+        </p>
+        <p><a href="{{ url_for('a05.vulnerable_comments') }}">Open vulnerable board</a></p>
+    </section>
+
+    <section class="card">
+        <h2 class="safe">Secure route</h2>
+        <p>
+            Jinja auto-escaping encodes special characters, so the same input
+            is displayed as text.
+        </p>
+        <p><a href="{{ url_for('a05.secure_comments') }}">Open secure board</a></p>
+    </section>
+</div>
+
+<form method="post" action="{{ url_for('a05.reset_comments') }}">
+    <button type="submit">Reset stored comments</button>
+</form>
+{% endblock %}
