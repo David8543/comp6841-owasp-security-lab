@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}A07 Authentication Failures{% endblock %}
+{% block content %}
+<h1>A07: Authentication Failures</h1>
+
+<p>
+    This experiment compares account enumeration and unlimited login attempts
+    with generic errors and server-side attempt limiting.
+</p>
+
+<div class="notice">
+    Local demo account:
+    <code>alice</code> /
+    <code>Comp6841Demo!</code>
+</div>
+
+<div class="grid">
+    <section class="card">
+        <h2 class="danger">Vulnerable route</h2>
+        <p>
+            Different error messages reveal whether a username exists, and
+            failed attempts are not restricted.
+        </p>
+        <p><a href="{{ url_for('a07.vulnerable_login') }}">Open vulnerable login</a></p>
+    </section>
+
+    <section class="card">
+        <h2 class="safe">Secure route</h2>
+        <p>
+            The response uses a generic error and blocks the username/client
+            combination after three failures.
+        </p>
+        <p><a href="{{ url_for('a07.secure_login') }}">Open secure login</a></p>
+    </section>
+</div>
+
+<form method="post" action="{{ url_for('a07.reset_attempts') }}">
+    <button type="submit">Reset failed attempts</button>
+</form>
+{% endblock %}

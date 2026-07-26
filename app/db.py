@@ -1,6 +1,7 @@
 import sqlite3
 
 from flask import current_app, g
+from werkzeug.security import generate_password_hash
 
 
 def get_db():
@@ -38,6 +39,17 @@ def init_db():
             body TEXT NOT NULL
         );
 
+        CREATE TABLE IF NOT EXISTS auth_users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL
+        );
+
+        CREATE TABLE IF NOT EXISTS login_attempts (
+            identifier TEXT PRIMARY KEY,
+            failed_count INTEGER NOT NULL DEFAULT 0
+        );
+
         INSERT OR IGNORE INTO users (id, username)
         VALUES
             (1, 'alice'),
@@ -52,6 +64,13 @@ def init_db():
         VALUES
             (1, 'Welcome to the local comments board.');
         """
+    )
+    database.execute(
+        """
+        INSERT OR IGNORE INTO auth_users (username, password_hash)
+        VALUES (?, ?)
+        """,
+        ("alice", generate_password_hash("Comp6841Demo!")),
     )
     database.commit()
 
