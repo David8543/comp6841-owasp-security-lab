@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}A01 Broken Access Control{% endblock %}
+{% block content %}
+<h1>A01: Broken Access Control</h1>
+
+<p>
+    The lab simulates a user authenticated as <strong>Alice</strong>.
+    Alice owns note 1. Bob owns note 2.
+</p>
+
+<div class="grid">
+    <section class="card">
+        <h2 class="danger">Vulnerable route</h2>
+        <p>The server retrieves a note by its object ID without checking ownership.</p>
+        <p><a href="{{ url_for('a01.vulnerable_note', note_id=1) }}">Open Alice's note</a></p>
+        <p>Then change the final URL value from <code>1</code> to <code>2</code>.</p>
+    </section>
+
+    <section class="card">
+        <h2 class="safe">Secure route</h2>
+        <p>The server checks that the requested note belongs to Alice.</p>
+        <p><a href="{{ url_for('a01.secure_note', note_id=1) }}">Open Alice's note</a></p>
+        <p>Changing the final URL value to <code>2</code> should return HTTP 403.</p>
+    </section>
+</div>
+{% endblock %}

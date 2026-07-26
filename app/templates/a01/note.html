@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ mode }} note view{% endblock %}
+{% block content %}
+<h1>{{ mode }} note view</h1>
+
+<div class="card">
+    <p><strong>Note ID:</strong> {{ note["id"] }}</p>
+    <p><strong>Owner:</strong> {{ note["username"] }}</p>
+    <p><strong>Title:</strong> {{ note["title"] }}</p>
+    <p><strong>Content:</strong> {{ note["content"] }}</p>
+</div>
+
+<p><a href="{{ url_for('a01.overview') }}">Back to A01 experiment</a></p>
+{% endblock %}

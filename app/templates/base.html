@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}OWASP Security Lab{% endblock %}</title>
+    <style>
+        body {
+            max-width: 900px;
+            margin: 48px auto;
+            padding: 0 24px;
+            color: #1f2937;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+        }
+        a { color: #1d4ed8; }
+        h1 { color: #0f172a; }
+        nav { margin-bottom: 28px; }
+        .notice {
+            padding: 14px 18px;
+            border-left: 4px solid #d97706;
+            background: #fffbeb;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+        .card {
+            padding: 20px;
+            border: 1px solid #dbe3ee;
+            border-radius: 10px;
+            background: white;
+        }
+        .status { color: #64748b; }
+        .danger { color: #b91c1c; }
+        .safe { color: #047857; }
+        code {
+            padding: 2px 5px;
+            border-radius: 4px;
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <nav><a href="{{ url_for('index') }}">Home</a></nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
